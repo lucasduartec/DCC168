@@ -12,11 +12,11 @@ public class Jogo {
 	}
 	
 	public void iniciar() {
-		gerarNovaConfiguracao();
+		gerarConfiguracaoInicial();
 		imprimirTabuleiroInicial();
 	}
 
-	private void gerarNovaConfiguracao() {
+	private void gerarConfiguracaoInicial() {
 		for (int i = 0; i < TAM_TABULEIRO; i++) {
 			for (int j = 0; j < TAM_TABULEIRO; j++) {
 				tabuleiro[i][j] = obterNumeroAleatorio();
@@ -32,6 +32,14 @@ public class Jogo {
 				System.out.print(tabuleiro[i][j] + " ");
 			}
 			System.out.println();
+		}
+	}
+	
+	private void gerarNovaConfiguracao() {
+		for (int i = 0; i < TAM_TABULEIRO; i++) {
+			for (int j = 0; j < TAM_TABULEIRO; j++) {
+				//IMPLEMENTAR LÓGICA AQUI
+			}
 		}
 	}
 
