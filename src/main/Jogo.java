@@ -12,7 +12,7 @@ public class Jogo {
 	}
 
 	public void iniciar() {
-		System.out.println();
+		System.out.println("\nBem-vindo ao Jogo da Vida!\n");
 
 		for (int i = 0; i < TAM_TABULEIRO; i++) {
 			for (int j = 0; j < TAM_TABULEIRO; j++) {
@@ -29,36 +29,22 @@ public class Jogo {
 
 		for (int i = 0; i < TAM_TABULEIRO; i++) {
 			for (int j = 0; j < TAM_TABULEIRO; j++) {
-				
-				int qtdVizinhosVivos = calcularQuantidadeVizinhos(i,j);
 
-				// Qualquer célula com dois vizinhos vivos continua no mesmo estado para a
-				// próxima geração.
-				if (qtdVizinhosVivos == 2) {
-					novoTabuleiro[i][j] = tabuleiro[i][j];
-				} else {
-					if (tabuleiro[i][j] == 1) {
+				int qtdVizinhosVivos = calcularQuantidadeVizinhos(i, j);
 
-						// Qualquer célula viva com menos de dois vizinhos vivos morre de solidão
-						if (qtdVizinhosVivos < 2) {
-							novoTabuleiro[i][j] = 0;
-						}
-
-						// Qualquer célula viva com mais de três vizinhos vivos morre de superpopulação.
-						if (qtdVizinhosVivos > 3) {
-							novoTabuleiro[i][j] = 0;
-						}
-
-					}
-
-					// Qualquer célula morta com exatamente três vizinhos vivos se torna uma célula
-					// viva.
-					if (tabuleiro[i][j] == 0 && qtdVizinhosVivos == 3) {
+				if (tabuleiro[i][j] == 1) {
+					if (qtdVizinhosVivos < 2 || qtdVizinhosVivos > 3)
+						novoTabuleiro[i][j] = 0;
+					else
 						novoTabuleiro[i][j] = 1;
-					}
 
 				}
-
+				if (tabuleiro[i][j] == 0) {
+					if (qtdVizinhosVivos == 3)
+						novoTabuleiro[i][j] = 1;
+					else
+						novoTabuleiro[i][j] = 0;
+				}
 			}
 		}
 
@@ -99,14 +85,17 @@ public class Jogo {
 
 		gerarNovaConfiguracao();
 
-		System.out.println();
+		System.out.println("\n Anterior               Atual");
 
 		for (int i = 0; i < TAM_TABULEIRO; i++) {
 			for (int j = 0; j < TAM_TABULEIRO; j++) {
 				System.out.print(tabuleiroAnterior[i][j] + " ");
 			}
 
-			System.out.print("      ");
+			if (i == 3)
+				System.out.print("   ==>   ");
+			else
+				System.out.print("         ");
 
 			for (int j = 0; j < TAM_TABULEIRO; j++) {
 				System.out.print(tabuleiro[i][j] + " ");
