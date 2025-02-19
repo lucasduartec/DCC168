@@ -6,26 +6,25 @@ public class main {
 
 	public static void main(String[] args) {
 
-		Scanner teclado = new Scanner(System.in);
+        Jogo jogo = new Jogo();
+        Scanner scanner = new Scanner(System.in);
 
-		Jogo jogo = new Jogo();
-		jogo.iniciar();
+        jogo.iniciar();
 
-		int opcao = 0;
-		int numeroGeracao = 1;
+        boolean continuar = true;
+        while (continuar) {
+            System.out.println("\nDigite 'G' para gerar nova rodada ou 'S' para sair:");
+            String escolha = scanner.nextLine().trim().toUpperCase();
 
-		while (opcao != 2) {
-			System.out.println("\nSelecione uma opção:\n1 - Gerar nova configuração\n2 - Sair\n");
-			opcao = teclado.nextInt();
-
-			if (opcao == 1) {
-				System.out.println("\n================================");
-				System.out.println("\nGeração: " + numeroGeracao);
-				numeroGeracao++;
-				jogo.gerarRodada();
-			}
-		}
-
-		teclado.close();
+            if (escolha.equals("G")) {
+                jogo.gerarRodada();
+            } else if (escolha.equals("S")) {
+                continuar = false;
+                System.out.println("Encerrando o jogo...");
+            } else {
+                System.out.println("Opção inválida. Tente novamente.");
+            }
+        }
+        scanner.close();
 	}
 }
