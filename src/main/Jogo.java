@@ -104,13 +104,17 @@ public class Jogo {
         return (int) Math.round(Math.random());
     }
     
-    // Métodos auxiliares para injetar e obter configurações no tabuleiro (para teste)
     public void setTabuleiro(int[][] novoTabuleiro) {
-        if (novoTabuleiro.length != TAM_TABULEIRO || novoTabuleiro[0].length != TAM_TABULEIRO) {
-            throw new IllegalArgumentException("O tabuleiro deve ser de tamanho " + TAM_TABULEIRO + "x" + TAM_TABULEIRO);
+        for (int i = 0; i < TAM_TABULEIRO; i++) {
+            for (int j = 0; j < TAM_TABULEIRO; j++) {
+                if (novoTabuleiro[i][j] != 0 && novoTabuleiro[i][j] != 1) {
+                    throw new IllegalArgumentException("Valor inválido na posição (" + i + "," + j + "). Somente 0 ou 1 são permitidos.");
+                }
+            }
         }
         this.tabuleiro = novoTabuleiro;
     }
+
     
     public int[][] getTabuleiro() {
         return tabuleiro;
