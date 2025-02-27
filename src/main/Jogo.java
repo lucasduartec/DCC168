@@ -62,9 +62,9 @@ public class Jogo {
             int vizinhoCoordenadaY = j + deslocamentoY[k];
 
             if (vizinhoCoordenadaX >= 0 && vizinhoCoordenadaX < TAM_TABULEIRO &&
-                vizinhoCoordenadaY >= 0 && vizinhoCoordenadaY < TAM_TABULEIRO) {
-                if (tabuleiro[vizinhoCoordenadaX][vizinhoCoordenadaY] == 1)
-                    qtdVizinhosVivos++;
+                    vizinhoCoordenadaY >= 0 && vizinhoCoordenadaY < TAM_TABULEIRO
+                    && tabuleiro[vizinhoCoordenadaX][vizinhoCoordenadaY] == 1) {
+                qtdVizinhosVivos++;
             }
         }
         return qtdVizinhosVivos;
@@ -103,19 +103,19 @@ public class Jogo {
     private int obterNumeroAleatorio() {
         return (int) Math.round(Math.random());
     }
-    
+
     public void setTabuleiro(int[][] novoTabuleiro) {
         for (int i = 0; i < TAM_TABULEIRO; i++) {
             for (int j = 0; j < TAM_TABULEIRO; j++) {
                 if (novoTabuleiro[i][j] != 0 && novoTabuleiro[i][j] != 1) {
-                    throw new IllegalArgumentException("Valor inválido na posição (" + i + "," + j + "). Somente 0 ou 1 são permitidos.");
+                    throw new IllegalArgumentException(
+                            "Valor inválido na posição (" + i + "," + j + "). Somente 0 ou 1 são permitidos.");
                 }
             }
         }
         this.tabuleiro = novoTabuleiro;
     }
 
-    
     public int[][] getTabuleiro() {
         return tabuleiro;
     }
